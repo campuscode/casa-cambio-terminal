@@ -16,6 +16,7 @@ class Cashier
   def buy_dollars(quantity)
     transaction = Transaction.new(quantity: quantity, currency: 'dollar',
                                   quotation: quotation, transaction_type: 'buy')
+    transaction.save
     puts "Essa transação vai custar R$ #{transaction.total}"
     if transaction.confirm?
       self.dollar_amount += transaction.quantity
@@ -30,6 +31,7 @@ class Cashier
   def sell_dollars(quantity)
     transaction = Transaction.new(quantity: quantity, currency: 'dollar',
                                   quotation: quotation, transaction_type: 'buy')
+    transaction.save
     puts "Essa transação vai custar R$ #{transaction.total}"
     if transaction.confirm?
       self.dollar_amount -= transaction.quantity
