@@ -26,7 +26,9 @@ loop do
     transaction = Transaction.new(quantity: quantity, currency: 'dollar',
                                   quotation: quotation, transaction_type: 'buy')
     puts "Essa transação vai custar R$ #{transaction.total}"
-    if transaction.confirm?
+    puts 'Deseja continuar? s / n'
+    opcao = gets.chomp
+    if opcao == 's'
       dollar_amount += transaction.quantity
       real_amount -= transaction.total
       transactions << transaction
@@ -43,7 +45,9 @@ loop do
                                   quotation: quotation,
                                   transaction_type: 'sell')
     puts "Essa transação vai incluir R$ #{transaction.total}"
-    if transaction.confirm?
+    puts 'Deseja continuar? s / n'
+    opcao = gets.chomp
+    if opcao == 's'
       dollar_amount -= transaction.quantity
       real_amount += transaction.total
       transactions << transaction

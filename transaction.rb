@@ -8,13 +8,6 @@ class Transaction
     @transaction_type = transaction_type
   end
 
-  def confirm?
-    puts 'Deseja continuar? s / n'
-    opcao = gets.chomp
-    return true if opcao.eql? 's'
-    false
-  end
-
   def total
     quantity * quotation
   end
