@@ -48,6 +48,7 @@ class Cashier
     Dólar em caixa: $ #{dollar_amount}
     Real em caixa: R$ #{real_amount}
     Cotação do dólar: R$ #{quotation}
+
     Transação do dia
     #{transactions.map { |t| t.to_s }.join("\n")}
     HEREDOC

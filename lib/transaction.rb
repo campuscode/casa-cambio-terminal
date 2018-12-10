@@ -62,12 +62,18 @@ class Transaction
   end
 
   def insert_on_database
-    db = SQLite3::Database.open 'currency_exchange.db'
-    db.execute("
+    begin
+      db = SQLite3::Database.open 'currency_exchange.db'
+      db.execute <<-SQL, *quantity, currency, quotation, transaction_type
       INSERT INTO transactions (quantity, currency, quotation, transaction_type)
       VALUES
         (?, ?, ?, ?)
-        ", [quantity, currency, quotation, transaction_type])
-    db.close
+      SQL
+      self.id = db.last_insert_row_id
+    rescue SQLite3::Exception => exception
+      puts exception
+    ensure
+      db.close if db
+    end
   end
 end
